@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1 class='fw-bold'>DETAIL</h1>
+  <a href="{% url 'eithers:index' %}" class='btn btn-success'>BACK</a>
+  <hr>
+  <!--결과-->
+  <p class='fs-1 text-center'>{{ vote.title }}</p>
+  <div class='d-flex justify-content-between'>
+    <div class='text-primary fs-2'>{{ vote.issue_a }}</div>
+    <div class='text-danger  fs-2'>{{ vote.issue_b }}</div>
+  </div>
+  <div class="progress" style="height: 40px;">
+    <div class="progress-bar" role="progressbar" style="width: {{ blue|floatformat:2 }}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">{{ blue|floatformat:2 }}%</div>
+    <div class="progress-bar bg-danger" role="progressbar" style="width: {{ red|floatformat:2 }}%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">{{ red|floatformat:2 }}%</div>
+  </div>
+  <hr>
+  <!--댓글-->
+  <h3>댓글 작성</h3>
+  <form action="{% url 'eithers:comment_create' vote.pk %}" method='POST'>
+    {% csrf_token %}
+    <p class='m-2 fw-bold'>Pick</p> 
+    {{ comment_form.pick }}
+    <p class='m-2 fw-bold'>Content</p> 
+    {{ comment_form.content }}
+    <input type="submit" value='작성' class='btn btn-warning mt-3 fw-bold'>
+  </form>
+  <hr>
+  <!--댓글목록-->
+  <h3>댓글 목록</h3>
+  {% for comment in comments %}
+    {% if  comment.pick == 'Blue' %}
+      <p class='p-2 bg-primary bg-opacity-25 text-primary rounded-1'>{{ comment.content }}</p>
+    {% else %}
+      <div class='p-2 bg-danger bg-opacity-25 text-danger rounded-1'>{{ comment.content }}</div>
+    {% endif %}
+    
+    <hr>
+  {% endfor %}
+{% endblock content %}
+

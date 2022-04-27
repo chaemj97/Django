@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class='text-center'>새 글 작성하기 </h1>
+<form action=" {% url 'articles:create' %}" method="POST">
+  {% comment %} csrf 토큰을 포함하지 않으면
+  post 요청을 생성할 수 없다. 장고 서버내에서 csrf 토큰을 포함하지 않은
+  post 요청을 금지 한다.  {% endcomment %}
+  {% csrf_token %}
+  <p><label for="title">제목 : </label>
+    <input type="text" id="title" name="title">
+  </p>
+  <p>
+    <label for="content">내용 : </label>
+    <textarea name="content" id="content" cols="30" rows="10">
+    </textarea>
+  </p>
+  {{ form.as_p }}
+  <input type="submit" value="작성하기">
+</form>
+<a href=" {% url 'articles:index' %} ">[Back]</a>
+{% endblock content %}

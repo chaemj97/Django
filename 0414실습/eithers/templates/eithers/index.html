@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1 class='fw-bold'>Either Game</h1>
+  <a href="{% url 'eithers:create' %}" class='btn btn-primary'>New Question</a>
+  <a href="{% url 'eithers:detail' random_one.pk %}" class='btn btn-danger'>Random Question</a>
+  <hr>
+  {% for vote in votes %}
+    <div class="card">
+      <div class="card-body">
+        <h4>{{ vote.title }}</h4>
+        <a href="{% url 'eithers:detail' vote.pk %}" class='btn btn-warning'>Play</a>
+      </div>
+    </div>
+  {% endfor %}
+  
+{% endblock content %}

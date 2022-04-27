@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+<h1 class='text-center'>NEW</h1>
+<form action="{% url 'articles:create' %}" method='POST'>
+  {% csrf_token %}
+  {% comment %} 1.form.as_p {% endcomment %}
+  {% comment %} /{{ form.as_p }} {% endcomment %}
+  
+  {% comment %} <p>
+    <label for="title">TITLE : </label>
+    <input type="text" name='title' id='title'>
+  </p>
+  <p>
+    <label for="content">CONTENT :</label>
+    <textarea name="content" id="content" cols="30" rows="10"></textarea>
+  </p> {% endcomment %}
+  
+  {% comment %} 2. form.field  {% endcomment %}
+  {{ form.title.errors }}
+  {{ form.title.label_tag}}
+  {{ form.title }}
+  <hr>
+  {{ form.content.errors }}
+  {{ form.content.label_tag}}
+  {{ form.content }} 
+
+  {% comment %} 3. for tag {% endcomment %}
+  {% comment %} {% for field in form %}
+    {% if field.errors %}
+      {% for error in field.errors %}
+        <div class="alert alert-danger" role="alter">
+          {{ error }}
+        </div>
+      {% endfor %}
+    {% endif %} 
+    {{ field.label_tag }}
+    {{ field }}
+  {% endfor %} {% endcomment %}
+  <p>
+    <input type="submit" value='작성'>
+  </p> 
+
+  {% comment %} {% bootstrap_form form %}
+  {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      Submit
+    </button>
+  {% endbuttons %} {% endcomment %}
+</form>
+{% endblock content %}
+
