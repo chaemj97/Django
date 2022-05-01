@@ -1,0 +1,21 @@
+{% extends 'ssafy/base.html' %}
+
+{% block style %}
+<style>
+  body {
+    color: {{ text_color }};
+    background-color: {{ bg_color }};
+  }
+</style>
+{% endblock style %}
+
+
+
+{% block content %}
+<h1>pong</h1>
+<p>This is PONG.HTML</p>
+{{ heading }}
+{{ bg_color }}
+{{ text_color }}
+{% endblock content %}
+

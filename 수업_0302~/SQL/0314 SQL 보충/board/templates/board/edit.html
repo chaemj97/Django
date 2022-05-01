@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1>Edit BlogPosting</h1>
+<form action="{% url 'board:update' blog_positng.pk %}" method="POST">
+  {% csrf_token %}
+  author:  <input type="text" name="author" value="{{ blog_posting.author }}">
+  <br>
+  {% comment %} name은 views에 key값이랑 맞아야해 {% endcomment %}
+  {% comment %} id는 label의 for와 맞추는거 {% endcomment %}
+  title:  <input type="text" name="title" value="{{ blog_posting.title }}">
+  <br>
+  content:  <textarea name="content" cols="30" rows="10">{{ blog_posting.content }}</textarea>
+  <br>
+  <button>Go</button>
+</form>
+{% endblock body %}

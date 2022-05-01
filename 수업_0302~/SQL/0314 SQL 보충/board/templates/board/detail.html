@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1>{{ blog_posting.title }}</h1>
+<span>{{ blog_posting.author }}</span>
+
+<p>
+  {{ blog_posting.content }}
+</p>
+
+<div>
+  <a href="{% url 'board:edit' blog_posting.pk %}">Edit</a>
+</div>
+
+<div>
+  <a href="{% url 'board:delete' blog_posting.pk %}" onclick="return confirm('진짜 지운다?')">
+    Delete
+  </a>
+</div>
+{% endblock body %}

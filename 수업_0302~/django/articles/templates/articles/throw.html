@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Throw</h1>
+<form action="{% url 'catch' %}" method="GET">
+  {% comment %} POST : 사용자가 생성한 데이터를 서버에 저장  csrf_token 함께 사용{% endcomment %}
+  <!--사용자들에게 정보를 입력받을 수 있는 input 요소를 넣습니다.-->
+  <p><label for="username">이름 : </label><input type="text" name="username" id="username"></p>
+  <p><label for="userid">이름 : </label><input type="text" name="userid" id="userid"></p>
+
+  <!-- METHOD : GET/POST
+    GET : 요청 파라미터가 쿼리스트링으로 포함되는 형태
+    url?parametername=parametervalule
+    catch/?username=김&userid=ssafy
+    POST : 요청 파라미터가 요청head에 포함되어 전송됨
+    url에 전송 데이터가 표시되지 않음
+  -->
+  <input type="submit" value="던지기">
+</form>
+{% endblock content %}
+

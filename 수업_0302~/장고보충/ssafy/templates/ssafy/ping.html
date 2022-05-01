@@ -1,0 +1,23 @@
+{% extends 'ssafy/base.html' %}
+{% block content %}
+<h1>ping</h1>
+<p>This is PING.HTML</p>
+
+<form action="/ssafy/pong/">
+  <div>
+    <label for="heading">제목 : </label>
+    <input type="text" id="heading" name="heading">
+  </div>
+  <div>
+    <label for="bg-color">배경 :</label>
+    <input type="color" id="bg-color" name="bg-color">
+  </div>
+  <div>
+    <label for="text-color">글자 :</label>
+    <input type="color" id="text-color" name='text-color'>
+  </div>
+  <div>
+    <input type="submit">
+  </div>
+</form>
+{% endblock content %}
