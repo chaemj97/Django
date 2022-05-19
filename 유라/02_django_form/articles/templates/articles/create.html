@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <h1>CREATE</h1>
+  <hr>
+  <form action="{% url 'articles:create' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+  </form>
+  <hr>
+
+  <h2>1. Rendering fields manually</h2>
+  <form action="{% url 'articles:create' %}" method="POST">
+    {% csrf_token %}
+    <div>
+      {{ form.title.errors }}
+      {{ form.title.label_tag }}
+      {{ form.title }}
+    </div>
+    <div>
+      {{ form.content.errors }}
+      {{ form.content.label_tag }}
+      {{ form.content }}
+    </div>
+    <input type="submit">
+  </form>
+  <hr>
+  <h2>2. Looping over the form’s fields</h2>
+  <form action="{% url 'articles:create' %}" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+      {% if field.errors %}
+        {% for error in field.errors %}
+          <div class="alert alert-warning">{{ error }}</div>
+        {% endfor %}
+      {% endif %}
+      {{ field.label_tag }}
+      {{ field }}
+    {% endfor %}
+    <input type="submit">
+  </form>
+
+  <a href="{% url 'articles:index' %}">back</a>
+{% endblock content %}

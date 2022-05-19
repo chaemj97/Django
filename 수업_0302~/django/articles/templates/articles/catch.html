@@ -1,8 +1,0 @@
-{% extends 'base.html' %}
-{% block content %}
-  <h1>Catch 입니다.</h1>
-  <!-- 여기다가 Throw 에서 던진 데이터 출력-->
-  이름 : {{ username }} 아이디 : {{ userid }}
-  <br>
-  <a href="{% url 'throw' %}">다시 던지러</a>
-{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock style %}
+
+{% block content %}
+  <img src="{% static 'articles/sample-img.jpg' %}" alt="sample image" style="width: 300px;">
+  <h1>INDEX</h1>
+  <a href="{% url 'articles:greeting' %}">greeting</a>
+  <a href="{% url 'articles:dinner' %}">dinner</a>
+  <a href="{% url 'articles:throw' %}">throw</a>
+  <a href="{% url 'articles:dtl_practice' %}">dtl_practice</a>
+
+  <a href="{% url 'pages:index' %}">두번째 앱의 메인페이지</a>
+{% endblock content %}
